@@ -1,15 +1,31 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link, graphql } from "gatsby";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import JumboSection from "../components/Globals/JumboHeader.js";
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
+    <JumboSection
+      img={data.jumboImg.childImageSharp.fluid}
+      title="Northern Eudaimonia"
+      styleClass="default-background"
+    />
   </Layout>
-)
+);
 
-export default IndexPage
+export const query = graphql`
+  {
+    jumboImg: file(relativePath: { eq: "heroOreo.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+  }
+`;
+
+export default IndexPage;

@@ -8,6 +8,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:root {
+  --colorA: #f53464;
+  --colorB: #3a5fb8;
+  --colorC: #ece8dc;
+  --colorD: #fff;
+  --colorE: #222;
+  --colorEquart: rgba(34, 34, 34, 0.25);
+  --colorF: #ffe165;
+  --colorG: rgb(245, 232, 215);
+}
+
 article,
 aside,
 details,
@@ -199,7 +211,7 @@ html {
   box-sizing: inherit;
 }
 body {
-  color: hsla(0, 0%, 0%, 0.8);
+  color: var(--colorE);
   font-family: georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
@@ -208,6 +220,8 @@ body {
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
+
+  background: var(--colorD);
 }
 img {
   max-width: 100%;
@@ -616,6 +630,17 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+
+.default-background {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(var(--colorEquart), var(--colorEquart));
+  background-position: center;
+  background-size: cover;
+}
+
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
