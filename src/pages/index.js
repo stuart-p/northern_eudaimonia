@@ -4,15 +4,19 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import JumboSection from "../components/Globals/JumboHeader.js";
+import Introduction from "../components/Introduction";
 
-const IndexPage = ({ data }) => (
-  <Layout>
+const IndexPage = ({ data, location }) => (
+  <Layout location={location}>
     <SEO title="Home" />
     <JumboSection
       img={data.jumboImg.childImageSharp.fluid}
-      title="Northern Eudaimonia"
       styleClass="default-background"
-    />
+    >
+      <h1>Northern</h1>
+      <h1 className="font-styled">Eudaimonia</h1>
+    </JumboSection>
+    <Introduction />
   </Layout>
 );
 
@@ -20,7 +24,7 @@ export const query = graphql`
   {
     jumboImg: file(relativePath: { eq: "heroOreo.png" }) {
       childImageSharp {
-        fluid {
+        fluid(maxWidth: 1000, quality: 100) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }

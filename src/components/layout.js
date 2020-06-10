@@ -13,12 +13,16 @@ import "./bootstrap.min.css";
 import "./layout.css";
 
 import Navbar from "./Globals/Navbar";
+import Footer from "./Globals/Footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   return (
     <>
-      <Navbar />
-      {children}
+      <Navbar location={location} />
+      <main className="d-flex flex-column h-100 justify-content-center">
+        {children}
+      </main>
+      <Footer />
     </>
   );
 };

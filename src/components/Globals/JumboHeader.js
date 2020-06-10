@@ -4,7 +4,7 @@ import BackgroundImage from "gatsby-background-image";
 const JumboHeader = ({ img, styleClass, title, children }) => {
   return (
     <BackgroundImage className={styleClass} fluid={img}>
-      <h1 className="title text-white text-uppercase text-center display-4 font-weight-bold">
+      <h1 className="title text-uppercase text-center display-4 font-weight-bold">
         {title}
       </h1>
       {children}
@@ -13,7 +13,7 @@ const JumboHeader = ({ img, styleClass, title, children }) => {
 };
 
 JumboHeader.defaultProps = {
-  title: "default title",
+  title: "",
   styleClass: "default-background",
 };
 
