@@ -81,7 +81,12 @@ h1 {
   font-family: "Cooper", sans-serif;
 }
 
-.default-background {
+.font-Yellow {
+  color: var(--colorF);
+}
+
+.default-background,
+.about-background {
   min-height: 70vh;
   display: flex;
   flex-direction: column;
@@ -91,6 +96,11 @@ h1 {
   background-position: 70% 50%;
   background-size: cover;
   color: var(--colorB);
+}
+
+.about-background {
+  min-height: 50vh;
+  color: var(--colorF);
 }
 
 @media only screen and (max-width: 480px) {
