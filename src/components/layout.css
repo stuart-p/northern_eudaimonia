@@ -6,7 +6,18 @@
   font-style: normal;
 }
 
-body {
+html {
+  font-size: 16px;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(10px + 6 * ((100vw - 320px) / 680));
+  }
+}
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 22px;
+  }
 }
 
 :root {
@@ -85,6 +96,11 @@ h1 {
   color: var(--colorF);
 }
 
+.font-intense {
+  font-weight: 900;
+  font-size: larger;
+}
+
 .default-background,
 .about-background {
   min-height: 70vh;
@@ -103,8 +119,8 @@ h1 {
   color: var(--colorF);
 }
 
-@media only screen and (max-width: 480px) {
+/* @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
   }
-}
+} */

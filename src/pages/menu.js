@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import JumboSection from "../components/Globals/JumboHeader.js";
 import Introduction from "../components/Introduction";
+import { moneyFormat } from "../utils/utils";
 
 const MenuPage = ({ data, location }) => {
   const [menuCategories, setMenuCategories] = useState(data.categories.edges);
@@ -37,7 +38,7 @@ const MenuPage = ({ data, location }) => {
         img={data.jumboImg.childImageSharp.fluid}
         styleClass="default-background"
       >
-        <h1>Menu</h1>
+        <h1 className="font-styled">Menu</h1>
       </JumboSection>
       <SegmentedControl
         name="categorySelect"
@@ -49,14 +50,77 @@ const MenuPage = ({ data, location }) => {
           };
         })}
         setValue={selectedValue => setSelectedCategory(selectedValue)}
+        style={{
+          color: "#3a5fb8",
+          fontFamily: "lato",
+          fontWeight: 900,
+          fontSize: "1rem",
+        }}
+        className=" w-75"
       />
-      <ul>
-        {menuItems.map(item => {
+      {menuCategories.map(categories => {
+        if (categories.node.id === selectedCategory) {
           return (
-            <li key={item.node.id}>
-              <p>{item.node.title}</p>
-            </li>
+            categories.node.description && (
+              <h2 className="d-flex w-75 mx-auto font-styled">
+                {categories.node.description.description}
+              </h2>
+            )
           );
+        }
+      })}
+      {menuSubCategores.map(subCat => {
+        return (
+          <>
+            <ul key={subCat.node.id} className="list-unstyled">
+              <h2 className="d-flex w-75 mx-auto font-styled">
+                <u>{subCat.node.title}</u>
+              </h2>
+              <h3 className="d-flex w-75 mx-auto">
+                {subCat.node.description.description}
+              </h3>
+              {menuItems.map(item => {
+                if (item.node.itemSubCategory) {
+                  if (item.node.itemSubCategory.id === subCat.node.id) {
+                    return (
+                      <li
+                        key={item.node.id}
+                        className="d-flex flex-column w-50 mx-auto"
+                      >
+                        <section className="d-flex justify-content-between">
+                          <h4>{item.node.title}</h4>
+                          <h5>{moneyFormat(item.node.price)}</h5>
+                        </section>
+                        {item.node.description && (
+                          <p>{item.node.description.description}</p>
+                        )}
+                      </li>
+                    );
+                  }
+                }
+              })}
+            </ul>
+          </>
+        );
+      })}
+      <ul className="list-unstyled">
+        {menuItems.map(item => {
+          if (!item.node.itemSubCategory) {
+            return (
+              <li
+                key={item.node.id}
+                className="d-flex flex-column w-50 mx-auto"
+              >
+                <section className="d-flex justify-content-between">
+                  <h4>{item.node.title}</h4>
+                  <h5>{moneyFormat(item.node.price)}</h5>
+                </section>
+                {item.node.description && (
+                  <p>{item.node.description.description}</p>
+                )}
+              </li>
+            );
+          }
         })}
       </ul>
     </Layout>
@@ -112,6 +176,7 @@ export const query = graphql`
             title
           }
           itemSubCategory {
+            id
             title
           }
         }
