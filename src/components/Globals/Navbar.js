@@ -53,7 +53,7 @@ const Navbar = ({ location }) => {
               <li key={link.id} className="nav-item">
                 <Link
                   to={link.path}
-                  className={`nav-link text-capitalize ${
+                  className={`nav-link text-uppercase h4 font-weight-bold ${
                     link.path === currentPath ? "active" : ""
                   }`}
                 >

@@ -47,6 +47,7 @@ const MenuPage = ({ data, location }) => {
             label: category.node.title,
             value: category.node.id,
             default: currentIndex === 0 ? true : false,
+            key: category.node.id,
           };
         })}
         setValue={selectedValue => setSelectedCategory(selectedValue)}
@@ -55,16 +56,20 @@ const MenuPage = ({ data, location }) => {
           fontFamily: "lato",
           fontWeight: 900,
           fontSize: "1rem",
+          width: "auto",
         }}
-        className=" w-75"
+        className="mx-2"
       />
       {menuCategories.map(categories => {
         if (categories.node.id === selectedCategory) {
           return (
             categories.node.description && (
-              <h2 className="d-flex w-75 mx-auto font-styled">
+              <h5
+                key={categories.node.title}
+                className="d-flex w-75 mx-auto font-styled"
+              >
                 {categories.node.description.description}
-              </h2>
+              </h5>
             )
           );
         }
@@ -76,9 +81,16 @@ const MenuPage = ({ data, location }) => {
               <h2 className="d-flex w-75 mx-auto font-styled">
                 <u>{subCat.node.title}</u>
               </h2>
-              <h3 className="d-flex w-75 mx-auto">
-                {subCat.node.description.description}
-              </h3>
+              {subCat.node.description && (
+                <>
+                  <aside
+                    className="d-flex flex-column w-75 mx-auto h5"
+                    dangerouslySetInnerHTML={{
+                      __html: subCat.node.description.childMarkdownRemark.html,
+                    }}
+                  />
+                </>
+              )}
               {menuItems.map(item => {
                 if (item.node.itemSubCategory) {
                   if (item.node.itemSubCategory.id === subCat.node.id) {
@@ -154,6 +166,9 @@ export const query = graphql`
           title
           description {
             description
+            childMarkdownRemark {
+              html
+            }
           }
           parentCategory {
             id
