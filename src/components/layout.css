@@ -96,6 +96,10 @@ h1 {
   color: var(--colorF);
 }
 
+.font-Pink {
+  color: var(--colorA);
+}
+
 .font-intense {
   font-weight: 900;
   font-size: larger;

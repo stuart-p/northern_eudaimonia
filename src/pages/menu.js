@@ -38,7 +38,7 @@ const MenuPage = ({ data, location }) => {
         img={data.jumboImg.childImageSharp.fluid}
         styleClass="default-background"
       >
-        <h1 className="font-styled">Menu</h1>
+        <h1 className="font-styled font-Yellow">Menu</h1>
       </JumboSection>
       <SegmentedControl
         name="categorySelect"
@@ -141,14 +141,16 @@ const MenuPage = ({ data, location }) => {
 
 export const query = graphql`
   {
-    jumboImg: file(relativePath: { eq: "about-background.jpeg" }) {
+    jumboImg: file(relativePath: { eq: "coffeePink.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000, quality: 100) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
-    categories: allContentfulMenuCategories {
+    categories: allContentfulMenuCategories(
+      sort: { order: DESC, fields: displayOrder }
+    ) {
       edges {
         node {
           id
