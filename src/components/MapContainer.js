@@ -5,7 +5,9 @@ import iceCream from "../images/ice-cream.png";
 const Tag = ({ text }) => (
   <div style={{ display: "flex", marginLeft: "-20px", marginTop: "-30px" }}>
     <img src={iceCream} style={{ height: "40px", width: "40px" }} />
-    <h6 className="font-styled font-Pink">{text}</h6>
+    <a href="https://www.google.com/maps/place/Northern+Eudaimonia/@53.48353,-2.2265463,17z/data=!3m1!4b1!4m8!1m2!3m1!2sNorthern+Eudaimonia!3m4!1s0x487bb1ca60166f37:0xd1ed0b06967a48f1!8m2!3d53.4835268!4d-2.2243576">
+      <h6 className="font-styled font-Pink">{text}</h6>
+    </a>
   </div>
 );
 
@@ -19,8 +21,6 @@ class MapContainer extends Component {
   };
 
   render() {
-    console.log(process.env.CONTENTFUL_SPACE_ID);
-    console.log(process.env.GATSBY_GOOGLE_API_KEY);
     return (
       <section style={{ height: "400px", width: "100%" }}>
         <GoogleMapReact
