@@ -8,7 +8,6 @@ import Introduction from "../components/Introduction";
 import GridImage from "../components/GridImage";
 
 const IndexPage = ({ data, location }) => {
-  console.log(data.imgMosaic);
   return (
     <Layout location={location}>
       <SEO title="Home" />
@@ -56,7 +55,7 @@ export const query = graphql`
     jumboImg: file(relativePath: { eq: "heroOreo.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000, quality: 100) {
-          ...GatsbyImageSharpFluid_tracedSVG
+          ...GatsbyImageSharpFluid
         }
       }
     }
