@@ -20,11 +20,11 @@ class MapContainer extends Component {
 
   render() {
     console.log(process.env.CONTENTFUL_SPACE_ID);
-    console.log(process.env.GOOGLE_API_KEY);
+    console.log(process.env.GATSBY_GOOGLE_API_KEY);
     return (
       <section style={{ height: "400px", width: "100%" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.GOOGLE_API_KEY }}
+          bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_API_KEY }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
