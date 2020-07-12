@@ -19,6 +19,8 @@ class MapContainer extends Component {
   };
 
   render() {
+    console.log(process.env.CONTENTFUL_SPACE_ID);
+    console.log(process.env.GOOGLE_API_KEY);
     return (
       <section style={{ height: "400px", width: "100%" }}>
         <GoogleMapReact
